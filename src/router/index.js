@@ -7,6 +7,24 @@ const routes=[
         name:'home',
         component:Home
     },
+    {
+        path:'/login',
+        name:'login',
+        component:()=>import('@/views/Login.vue')
+    },
+    {
+
+        path:'/invoices',
+        name:'invoices',
+        component:()=>import('@/views/Invoices.vue'),
+        meta:{requiredAuth :true}
+    },
+    {
+        path:'/protected',
+        name:'protected',
+        component:()=>import('@/views/Protected.vue'),
+        meta:{requiredAuth:true}
+    },
 
     {
         path :'/destination/:id/:slug',
@@ -61,4 +79,13 @@ const router= createRouter({
     linkActiveClass:'vue-school-app'
 }
 )
+router.beforeEach((to,from)=>{
+    if(to.meta.requiredAuth && !window.user){
+        return {
+            name:'login',
+            query: {redirect:to.fullPath}
+            
+        }
+    }
+})
 export default router
