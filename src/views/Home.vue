@@ -1,6 +1,9 @@
 <template>
     <div class="home">
         <h1> All Destinations</h1>
+        <button @click="AddDynamicRoute"> Add Dynamic Route</button>
+        <RouterLink to="/dynamic"> visit Dynamic link </RouterLink>
+
         <div class="destinations">
             <RouterLink v-for="destination in destinations" :key="destination.id"
                 :to="{ name: 'destination.show', params: { id: destination.id, slug: destination.slug } }">
@@ -19,6 +22,17 @@ export default {
         return {
             destinations: sourceData.destinations
 
+        }
+    },
+    methods: {
+        AddDynamicRoute() {
+            this.$router.addRoute({
+                name: 'dynamic',
+                path: '/dynamic',
+                component: () => import('@/views/Login.vue')
+
+            }
+            )
         }
     }
 }

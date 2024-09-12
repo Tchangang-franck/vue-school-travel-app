@@ -1,10 +1,13 @@
 <template>
-    <div>
+    <div class="container">
         <p>Greetings {{ username }}</p>
-        <button @click="logout" class="btn">Log Out</button><span id="invoices"></span>
-        <RouterLink :to="{ name: 'invoices' }">
-            <button class="btn">Invoices</button>
-        </RouterLink>
+        <div class="content">
+            <button @click="logout" class="btn">Log Out</button><span id="invoices"></span>
+            <RouterLink :to="{ name: 'invoices' }">
+                <button class="btn">Invoices</button>
+            </RouterLink>
+        </div>
+
     </div>
 </template>
 <script>
@@ -29,8 +32,14 @@ export default {
 </script>
 
 <style scoped>
-#invoices{
-    margin-right: 20px;
+#invoices {
+
+    margin-right: 30px;
 }
 
+.content {
+    margin-top: 90px;
+    padding: 4px;
+    display: flex;
+}
 </style>

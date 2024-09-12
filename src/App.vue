@@ -1,11 +1,18 @@
 <template>
   <TheNavigation />
-  <div class="containe">
-    <RouterView v-slot="{ Component }"></RouterView>
+  <div class="container">
+
+
+    <RouterView class="view left-sidebar" name="leftsidebar"> </RouterView>
+    <Transition name="fade" mode="out-in">
+      <Component :key="$route.path"></Component>
+    </Transition>
+
+
+    <RouterView class="main-view"></RouterView>
     <Transition name="fade" mode="out-in">
       <Component :key="$route.path" />
     </Transition>
-
   </div>
 </template>
 
@@ -13,7 +20,7 @@
 import TheNavigation from '@/components/TheNavigation.vue';
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 /* name=slide mode =out-in*/
 
 /* .slide-enter-active,
@@ -74,5 +81,17 @@ import TheNavigation from '@/components/TheNavigation.vue';
 .fade-leave-to {
   opacity: 0;
 
+}
+
+.container {
+  display: flex;
+}
+
+.left-sidebar {
+  width: 80%;
+}
+
+.main-view {
+  width: 100%;
 }
 </style>

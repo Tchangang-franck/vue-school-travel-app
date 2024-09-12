@@ -5,6 +5,7 @@ const routes=[
     { 
         path:'/',
         name:'home',
+        alias:'/home',
         component:Home
     },
     {
@@ -16,13 +17,19 @@ const routes=[
 
         path:'/invoices',
         name:'invoices',
-        component:()=>import('@/views/Invoices.vue'),
+        components:{
+            default:()=>import('@/views/Invoices.vue'),
+            leftsidebar:()=>import('@/components/LeftSideBar.vue')
+        },
         meta:{requiredAuth :true}
     },
     {
         path:'/protected',
         name:'protected',
-        component:()=>import('@/views/Protected.vue'),
+        components:{
+            default:()=>import('@/views/Protected.vue'),
+            leftsidebar:()=>import('@/components/LeftSideBar.vue')
+        },
         meta:{requiredAuth:true}
     },
 
